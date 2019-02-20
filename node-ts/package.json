@@ -1,0 +1,17 @@
+{
+  "name": "node-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "server": "node dist/server"
+  },
+  "dependencies": {
+    "ts-node": "8.0.2",
+    "typescript": "3.3.3",
+    "@types/node": "11.9.4"
+  },
+  "author": "",
+  "license": "ISC"
+}

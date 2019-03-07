@@ -1,7 +1,7 @@
-import "./styles/index.scss"
+function haha(){
+    console.log("haha")
+}
 
-class A{
-    constructor(){
-        this.x = 123
-    }
+export {
+    haha
 }

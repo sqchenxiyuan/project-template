@@ -1,7 +1,9 @@
-function haha(){
-    console.log("haha")
+import "./styles/index.scss"
+
+function test(){
+    console.log("test")
 }
 
 export {
-    haha
+    test
 }

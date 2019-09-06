@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-let Div = styled.div`
+const Div = styled.div`
     color:red;
 `
 
 class App extends React.Component {
     render () {
         return (
-            <Div>Hello world!</Div>
+            <Div>Hello! Here is webpack+react+bable-for-web  demo!</Div>
         )
     }
 }

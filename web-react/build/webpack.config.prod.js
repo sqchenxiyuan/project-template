@@ -1,17 +1,17 @@
-const webpackBaseConfig = require("./webpack.config.base.js")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const merge = require("webpack-merge")
+const webpackBaseConfig = require('./webpack.config.base.js')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
 
 module.exports = merge(webpackBaseConfig, {
-    mode: "production",
-    devtool: "source-map",
+    mode: 'production',
+    devtool: 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            name: "index",
-            filename: "index.ejs",
-            template: "./index.template.html",
+            name: 'index',
+            filename: 'index.ejs',
+            template: './index.template.html',
             inject: true,
-            title: "web-react"
-        }),
-    ],
+            title: 'web-react'
+        })
+    ]
 })

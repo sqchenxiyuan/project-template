@@ -1,0 +1,6 @@
+# 目录
+target
+pkg
+
+# 文件
+Cargo.lock

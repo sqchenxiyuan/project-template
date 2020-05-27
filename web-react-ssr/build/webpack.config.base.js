@@ -1,18 +1,17 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
-const ManifestPlugin = require('webpack-manifest-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 module.exports = {
     context: path.resolve(__dirname, '../'),
     entry: {
-        app: './src/index.js'
+        app: './src/index.js',
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/public/',
         filename: '[name].[chunkhash:6].[contenthash:6].js',
-        chunkFilename: '[name].[chunkhash:6].[contenthash:6].chunk.js'
+        chunkFilename: '[name].[chunkhash:6].[contenthash:6].chunk.js',
     },
     module: {
         rules: [
@@ -50,12 +49,6 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        // new MiniCssExtractPlugin({
-        //     // Options similar to the same options in webpackOptions.output
-        //     // both options are optional
-        //     filename: 'css/[name].[chunkhash:6].[contenthash:6].css',
-        //     chunkFilename: 'css/[id].[chunkhash:6].[contenthash:6].css'
-        // }),
-        new ManifestPlugin()
+        new LoadablePlugin()
     ]
 }

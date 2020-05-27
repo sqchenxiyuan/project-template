@@ -1,7 +1,7 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 module.exports = {
     mode: "production",
@@ -16,6 +16,7 @@ module.exports = {
         chunkFilename: '[name].[chunkhash:6].[contenthash:6].chunk.js',
         libraryTarget: "commonjs",
     },
+    target: 'node',
     module: {
         rules: [
             {
@@ -47,5 +48,12 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-    ]
+        new ManifestPlugin({
+            basePath: "",
+            fileName: "server-ssr-manifest.json",
+            publicPath: "./"
+        }),
+        new LoadablePlugin()
+    ],
+    
 }

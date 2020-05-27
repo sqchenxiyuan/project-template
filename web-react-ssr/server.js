@@ -1,15 +1,14 @@
-const express = require('express');                //node方式引入expeess
-const ReactSSR = require('react-dom/server');      //node方式引入react-dom/serve
-const ssrApp = require('./dist/app-server.b98365.f76dc0.js');
-const app=express();
+const express = require('express')
+const path = require('path')
+const ssrApp = require(path.resolve(__dirname, './dist', require('./dist/server-ssr-manifest.json')['app-server.js']))
 
- app.get('*',function (req,res) {
-    const css = new Set() 
-    const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()))
-    const appString = ReactSSR.renderToString(ssrApp.app(req.url), insertCss);
-    res.send(`<html><body><style>${[...css].join(" ")}</style>${appString}</body></html>`)
-});
+const app=express()
+
+app.use('/public', express.static(path.resolve(__dirname, './dist')))
+app.get('/',ssrApp.appRender({
+    statsFile: path.resolve(__dirname, './dist/loadable-stats.json')
+}));
         
-app.listen(3000,function () {         //监听端口，成功函数
+app.listen(3000,function () {
     console.log('server is listening')
 })

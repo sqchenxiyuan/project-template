@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Link } from 'react-router-dom'
 import withStyles from 'isomorphic-style-loader/withStyles'
 import style from "./styles/index.css"
+import { Component1, Component2 } from "./components"
 
 class App extends React.Component {
     render () {
@@ -19,6 +20,8 @@ class App extends React.Component {
                         props => <div className={style.colorRed}>{props.match.params.id}</div>
                     }
                 />
+                <Component1></Component1>
+                <Component2></Component2>
             </>
         )
     }

@@ -3,20 +3,20 @@ import ReactDom from "react-dom"
 import App from "./app"
 import { BrowserRouter } from 'react-router-dom'
 import StyleContext from 'isomorphic-style-loader/StyleContext'
+import { loadableReady } from "@loadable/component"
 
 const insertCss = (...styles) => {
-    console.log(styles)
   const removeCss = styles.map(style => style._insertCss())
-    console.log(removeCss)
-
-//   return () => removeCss.forEach(dispose => dispose())
+  return () => removeCss.forEach(dispose => dispose())
 }
 
-ReactDom.render(
-    <StyleContext.Provider value={{insertCss}}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </StyleContext.Provider>,
-    document.getElementById("app")
-)
+loadableReady(_ => {
+    ReactDom.hydrate(
+        <StyleContext.Provider value={{insertCss}}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </StyleContext.Provider>,
+        document.getElementById("app")
+    )
+})

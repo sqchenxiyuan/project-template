@@ -10,14 +10,36 @@ let Component2Async = loadable(_ => import("./components-async"), {
     fallback: <div>loading</div>
 })
 
+function useAsyncLoad(Component, asyncWay){
+    let preloadData = {}
+    function y(props){
+        return <Component preload={preloadData} {...props}></Component>
+    }
 
-function Component2(){
-    let [count, updateCount] = React.useState(1)
+    y.prototype.fetchData = _ => {
+        return asyncWay.then(data => {
+            preloadData = data
+            return data
+        })
+    }
 
-    React.useEffect(_ => {
-        updateCount(2)
-    }, [])
+    // return function y(props){
+    //     return <><Component preload={preloadData} {...props}></Component></>
+    // }
+    
+    return Component
+}
+
+let Component2 = useAsyncLoad(function(props){
+    let [count, setCount] = React.useState(1)
+    let [loaded, setLoaded] = React.useState(false)
+
     console.log("aaaaa")
+    setTimeout(_ => {
+        setCount(100)
+        setLoaded(true)
+        console.log("bbbbb")
+    }, 1000)
     return (
         <div>
             {count}
@@ -26,7 +48,15 @@ function Component2(){
             </Component2Async>
         </div>
     )
-}
+}, _ => {
+    return new Promise(resolve => {
+        setTimeout(_ => {
+            resolve({
+                count: 100
+            })
+        }, 1000)
+    })
+})
 
 export {
     Component1,

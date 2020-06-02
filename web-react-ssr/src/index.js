@@ -4,6 +4,7 @@ import App from "./app"
 import { BrowserRouter } from 'react-router-dom'
 import StyleContext from 'isomorphic-style-loader/StyleContext'
 import { loadableReady } from "@loadable/component"
+import { createSSRContext } from './ssr-context'
 
 const insertCss = (...styles) => {
   const removeCss = styles.map(style => style._insertCss())

@@ -8,9 +8,9 @@
     "server": "node dist/server"
   },
   "dependencies": {
-    "ts-node": "8.0.2",
-    "typescript": "3.3.3",
-    "@types/node": "11.9.4"
+    "@types/node": "14.0.13",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.5"
   },
   "author": "",
   "license": "ISC"

@@ -47,7 +47,10 @@ module.exports = {
                 }, {
                     loader: "postcss-loader" // 编译CSS
                 }, {
-                    loader: "sass-loader" // 编译SCSS到CSS
+                    loader: "sass-loader", // 编译SCSS到CSS
+                    options: {
+                        implementation: require("sass")
+                    }
                 }]
             },
         ]

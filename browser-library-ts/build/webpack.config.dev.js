@@ -1,7 +1,7 @@
 const webpackBaseConfig = require("./webpack.config.base.js")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
-const merge = require("webpack-merge")
+const { merge } = require("webpack-merge")
 
 module.exports = merge(webpackBaseConfig, {
     mode: "development",
@@ -18,7 +18,7 @@ module.exports = merge(webpackBaseConfig, {
         new HtmlWebpackPlugin({
             name: "index",
             filename: "index.html",
-            template: "./example/index.template.html",
+            template: "./example/index.html",
             inject: true,
             title: "Hello World"
         }),
@@ -30,6 +30,7 @@ module.exports = merge(webpackBaseConfig, {
             ],
         },
         stats: "normal",
+        host: "0.0.0.0",
         port: 8080,
         hot: true
     }

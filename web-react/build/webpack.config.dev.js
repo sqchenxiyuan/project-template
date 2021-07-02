@@ -1,7 +1,9 @@
-const webpackBaseConfig = require('./webpack.config.base.js')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+
+const webpackBaseConfig = require('./webpack.config.base')
 
 module.exports = merge(webpackBaseConfig, {
     mode: 'development',
@@ -12,6 +14,7 @@ module.exports = merge(webpackBaseConfig, {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin(),
         new HtmlWebpackPlugin({
             name: 'index',
             filename: 'index.html',

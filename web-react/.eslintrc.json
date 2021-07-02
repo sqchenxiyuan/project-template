@@ -1,7 +1,8 @@
 {
-    "extends": ["standard", "standard-react"],
-    "rules": {
-        "indent": ["error", 4],
-        "react/jsx-indent": ["error", 4, "first"]
+    "parser": "@typescript-eslint/parser",
+    "extends": "@ofk/eslint-config-recommend",
+    "env": {"browser": true, "node": true},
+    "globals": {
+      "PIXI": true
     }
-}
+  }
